@@ -28,7 +28,7 @@ const ChartPie = () => {
                 justifyContent: "center",
                 alignItems: "center"
             }}>
-            <Text>Hello, world!</Text>
+            <Text>Below is a Pie Chart</Text>
             <Pie
                 radius={100}
                 sections={selt}
