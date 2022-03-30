@@ -11,8 +11,11 @@
   },
   "dependencies": {
     "@react-native-community/art": "^1.2.0",
+    "axios": "^0.26.1",
     "react": "17.0.2",
     "react-native": "0.67.4",
+    "react-native-document-picker": "^8.0.0",
+    "react-native-file-viewer": "^2.1.5",
     "react-native-pie": "^1.1.2"
   },
   "devDependencies": {
