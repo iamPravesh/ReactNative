@@ -19,7 +19,7 @@ export default class PersonList extends React.Component {
                     console.log(err);
                     this.setState({ errors: error });
                 })
-        }, 2000);
+        }, -1000);
     }
 
     render() {
@@ -29,16 +29,35 @@ export default class PersonList extends React.Component {
                     (this.state.persons.length == 0) ?
                         null :
                         <View>
-                            <Text> Below is the list of people called using axios </Text>
+                            <Text
+                                style={{
+                                    fontSize: 20,
+                                    fontWeight: 'bold',
+                                    marginTop: 20,
+                                    marginBottom: 20,
+                                }}
+                            > Below is the list of people called using axios:</Text>
                         </View>
                 }
 
                 {
                     this.state.persons
                         .map(person =>
-                            <View key={person.id}>
-                                <Text style={{ color: 'blue', fontSize: 25 }}>
-                                    HI, {person.name}
+                            <View
+                                style={{
+                                    borderWidth: 1,
+                                    borderColor: 'black',
+                                    margin: 10,
+                                    backgroundColor: 'lightblue',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                }}
+                                key={person.id}
+                            >
+                                <Text style={{ color: 'black', fontSize: 25 }}>
+                                    {person.name}
                                 </Text>
                             </View>
                         )

@@ -4,6 +4,7 @@ import Pie from 'react-native-pie';
 import ChartPie from './src/Screens/ChartPie';
 import PersonList from './src/Screens/PersonList';
 import FileUploader from './src/Screens/FileUploader';
+import GetImage from './src/Screens/GetImage';
 
 const App = () => {
 
@@ -12,6 +13,8 @@ const App = () => {
       <ScrollView>
         {/* <GetImage /> */}
         <FileUploader />
+        {/* <PersonList /> */}
+        {/* <ChartPie /> */}
       </ScrollView>
     </SafeAreaView>
   );
