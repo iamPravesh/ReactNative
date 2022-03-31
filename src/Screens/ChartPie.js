@@ -30,11 +30,10 @@ const ChartPie = () => {
             }}>
             <Text>Below is a Pie Chart</Text>
             <Pie
-                radius={100}
+                radius={150}
                 sections={selt}
                 strokeCap={'butt'}
-                backgroundColor={'#f0f0f0'}
-            // innerRadius={90}
+                backgroundColor={'white'}
             />
         </View>
     );
