@@ -1,10 +1,11 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 import axios from 'axios';
+// import { createStackNavigator } from 'react-navigation';
 
 export default class PersonList extends React.Component {
     state = {
-        persons: [],
+        persons: '',
         errors: 'waiting for persons...',
     }
 
@@ -12,7 +13,8 @@ export default class PersonList extends React.Component {
         setTimeout(() => {
             axios.get(`https://jsonplaceholder.typicode.com/users`)
                 .then(res => {
-                    const persons = res.data;
+                    const persons = res.data[Math.floor(Math.random() * res.data.length)].name;
+                    console.log(persons);
                     this.setState({ persons });
                 }).catch(err => {
                     const error = 'please connect to internet';
@@ -24,9 +26,47 @@ export default class PersonList extends React.Component {
 
     render() {
         return (
-            <View>
+            <View
+                style={{
+                    flex: 1,
+                    flexDirection: 'column',
+                    justifyContent: "flex-start",
+                    backgroundColor: '#000',
+                }}>
+                <View
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'flex-start',
+                        alignItems: 'center',
+                        paddingTop: 20,
+                        paddingLeft: 20,
+                    }}
+                >
+                    <TouchableOpacity
+                        onPress={() => this.props.navigation.goBack()}
+                        style={{
+                            padding: 10,
+                            backgroundColor: '#fff',
+                            borderRadius: 10,
+                            borderWidth: 1,
+                            borderColor: 'gold',
+                            width: '20%',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}
+                    >
+                        <Text
+                            style={{
+                                fontSize: 20,
+                                color: 'red',
+                            }}
+                        >Back</Text>
+                    </TouchableOpacity>
+                </View>
                 {
-                    (this.state.persons.length == 0) ?
+                    (this.state.persons == '') ?
                         null :
                         <View>
                             <Text
@@ -36,31 +76,45 @@ export default class PersonList extends React.Component {
                                     marginTop: 20,
                                     marginBottom: 20,
                                 }}
-                            > Below is the list of people called using axios:</Text>
-                        </View>
-                }
+                            > A Random Name: <Text style={{
+                                fontSize: 25,
+                                fontWeight: 'bold',
+                                color: 'gold',
+                            }} > {this.state.persons} </Text> </Text>
 
-                {
-                    this.state.persons
-                        .map(person =>
-                            <View
+                            <TouchableOpacity
+                                onPress={() => {
+                                    axios.get(`https://jsonplaceholder.typicode.com/users`)
+                                        .then(res => {
+                                            const persons = res.data[Math.floor(Math.random() * res.data.length)].name;
+                                            console.log(persons);
+                                            this.setState({ persons });
+                                        }).catch(err => {
+                                            const error = 'please connect to internet';
+                                            console.log(err);
+                                            this.setState({ errors: error });
+                                        })
+                                }}
                                 style={{
+                                    padding: 10,
+                                    backgroundColor: 'blue',
+                                    borderRadius: 10,
                                     borderWidth: 1,
-                                    borderColor: 'black',
-                                    margin: 10,
-                                    backgroundColor: 'lightblue',
+                                    borderColor: 'gold',
+                                    width: '60%',
                                     display: 'flex',
-                                    flexDirection: 'column',
                                     justifyContent: 'center',
                                     alignItems: 'center',
                                 }}
-                                key={person.id}
                             >
-                                <Text style={{ color: 'black', fontSize: 25 }}>
-                                    {person.name}
-                                </Text>
-                            </View>
-                        )
+                                <Text
+                                    style={{
+                                        fontSize: 20,
+                                        color: '#fff',
+                                    }}
+                                >Get another name</Text>
+                            </TouchableOpacity>
+                        </View>
                 }
 
                 {

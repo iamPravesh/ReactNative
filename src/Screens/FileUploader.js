@@ -7,7 +7,7 @@ import * as Progress from 'react-native-progress';
 import FlashMessage from "react-native-flash-message";
 
 
-const FileUploader = () => {
+const FileUploader = ({ navigation }) => {
     const [singleFile, setSingleFile] = useState('');
     const [uploadProgress, setUploadProgress] = useState(0);
     const [response, setResponse] = useState('This is the response');
@@ -43,17 +43,6 @@ const FileUploader = () => {
             });
     };
 
-    const deletePost = () => {
-        axios.delete('https://jsonplaceholder.typicode.com/photos/1')
-            .then(res => {
-                console.log('item deleted');
-                alert('item deleted');
-            })
-            .catch(err => {
-                console.log(err);
-            });
-    }
-
     const uploadImage = () => {
         if (singleFile.length > 0) {
             const data = {
@@ -85,7 +74,45 @@ const FileUploader = () => {
     };
 
     return (
-        <View>
+        <View
+            style={{
+                flex: 1,
+                flexDirection: 'column',
+                justifyContent: "flex-start",
+                backgroundColor: '#000',
+            }}>
+            <View
+                style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'flex-start',
+                    alignItems: 'center',
+                    paddingTop: 20,
+                    paddingLeft: 20,
+                }}
+            >
+                <TouchableOpacity
+                    onPress={() => navigation.goBack()}
+                    style={{
+                        padding: 10,
+                        backgroundColor: '#fff',
+                        borderRadius: 10,
+                        borderWidth: 1,
+                        borderColor: 'gold',
+                        width: '20%',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}
+                >
+                    <Text
+                        style={{
+                            fontSize: 20,
+                            color: 'red',
+                        }}
+                    >Back</Text>
+                </TouchableOpacity>
+            </View>
             <View
                 style={{
                     display: 'flex',
