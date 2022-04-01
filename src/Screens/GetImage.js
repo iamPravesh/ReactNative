@@ -5,12 +5,14 @@ import Image from 'react-native-image-progress';
 import FileViewer from 'react-native-file-viewer';
 
 
-const GetImage = () => {
+const GetImage = ({ navigation }) => {
     var [images, setImages] = useState(null);
 
     const getImages = () => axios.get('https://jsonplaceholder.typicode.com/photos')
         .then(res => {
             setImages(res.data[Math.floor(Math.random() * (4999 - 0)) + 0]);
+            console.log(Object.keys(res));
+            console.log(res.headers);
         }
         ).catch(err => {
             console.log(err);
@@ -33,7 +35,45 @@ const GetImage = () => {
     };
 
     return (
-        <View>
+        <View
+            style={{
+                flex: 1,
+                flexDirection: 'column',
+                justifyContent: "flex-start",
+                backgroundColor: '#000',
+            }}>
+            <View
+                style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'flex-start',
+                    alignItems: 'center',
+                    paddingTop: 20,
+                    paddingLeft: 20,
+                }}
+            >
+                <TouchableOpacity
+                    onPress={() => navigation.goBack()}
+                    style={{
+                        padding: 10,
+                        backgroundColor: '#fff',
+                        borderRadius: 10,
+                        borderWidth: 1,
+                        borderColor: 'gold',
+                        width: '20%',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}
+                >
+                    <Text
+                        style={{
+                            fontSize: 20,
+                            color: 'red',
+                        }}
+                    >Back</Text>
+                </TouchableOpacity>
+            </View>
             <View
                 style={{
                     display: 'flex',
