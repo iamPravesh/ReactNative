@@ -54,7 +54,7 @@ const Home = ({ navigation }) => {
                         <Text style={styles.butText} >PIE CHART</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => {
-                        navigation.navigate('PersonList')
+                        navigation.navigate('PersonNav')
                     }}
                         style={styles.buttons}
                     >
@@ -68,7 +68,7 @@ const Home = ({ navigation }) => {
                         <Text style={styles.butText} >Pick and upload Photo</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => {
-                        navigation.navigate('GetImage')
+                        navigation.navigate('PersonNav', { screen: 'GetImage' })
                     }}
                         style={styles.buttons}
                     >
@@ -81,6 +81,20 @@ const Home = ({ navigation }) => {
                     >
                         <Text style={styles.butText} >Chuck Norris Fact</Text>
                     </TouchableOpacity>
+                    <TouchableOpacity onPress={() => {
+                        navigation.navigate('Game')
+                    }}
+                        style={styles.buttons}
+                    >
+                        <Text style={styles.butText} >Game</Text>
+                    </TouchableOpacity>
+                    {/* <TouchableOpacity onPress={() => {
+                        navigation.navigate('Flower')
+                    }}
+                        style={styles.buttons}
+                    >
+                        <Text style={styles.butText} >Flower</Text>
+                    </TouchableOpacity> */}
                 </View>
             </ScrollView>
         </View>
